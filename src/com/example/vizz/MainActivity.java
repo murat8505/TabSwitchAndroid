@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         addTabs(actionBar);
-        viewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(new MyFragmentStatePagerAdapter(getSupportFragmentManager()));
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i2) {
@@ -89,18 +89,22 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         Tab tab1=actionBar.newTab();
         tab1.setText("Tab 1");
         tab1.setTabListener(this);
-
+        actionBar.addTab(tab1);
+        
         Tab tab2=actionBar.newTab();
-        tab2.setText("Tab 2");
+        tab2.setText("Lista");
         tab2.setTabListener(this);
-
+        actionBar.addTab(tab2);
+        
         Tab tab3=actionBar.newTab();
         tab3.setText("Tab 3");
         tab3.setTabListener(this);
-
-        actionBar.addTab(tab1);
-        actionBar.addTab(tab2);
         actionBar.addTab(tab3);
+        
+        Tab tab4=actionBar.newTab();
+        tab4.setText("Tab 4");
+        tab4.setTabListener(this);
+        actionBar.addTab(tab4);
     }
 	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction arg1) {
@@ -117,35 +121,4 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 		// TODO Auto-generated method stub
 		
 	}
-}
-
-class MyAdapter extends FragmentStatePagerAdapter
-{
-
-    public MyAdapter(FragmentManager fm) {
-        super(fm);
-    }
-
-    @Override
-    public Fragment getItem(int i) {
-        Fragment fragment=null;
-        if(i==0)
-        {
-            fragment=new FragmentA();
-        }
-        if(i==1)
-        {
-            fragment=new FragmentB();
-        }
-        if(i==2)
-        {
-            fragment=new FragmentC();
-        }
-        return fragment;
-    }
-
-    @Override
-    public int getCount() {
-        return 3;
-    }
 }
